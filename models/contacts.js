@@ -4,12 +4,12 @@ const path = require('path');
 
 const contactsPath = path.join(__dirname, "./contacts.json")
 
-const listContacts = async () => {
+const getAll = async () => {
   const data = await fs.readFile(contactsPath, 'utf8') 
   return JSON.parse(data);
 }
 
-const getContactById = async (contactId) => {
+const getById = async (contactId) => {
   const data = await fs.readFile(contactsPath, 'utf8')
   return JSON.parse(data).find(contact => contact.id === String(contactId)) 
 }
@@ -52,8 +52,8 @@ const updateContact = async (contactId, body) => {
 }
 
 module.exports = {
-  listContacts,
-  getContactById,
+  getAll,
+  getById,
   removeContact,
   addContact,
   updateContact,
