@@ -1,17 +1,13 @@
-const { addContact } = require("../../models/contacts");
+const { Contact } = require("../../models");
 
 const addNewContact = async (req, res, next) => {
-  const newContact = {
-    ...req.body,
-    id: String(Math.round(Math.random() * 1000)),
-  };
-  await addContact(newContact);
+  const result = await Contact.create(req.body);
 
   res.status(201).json({
     status: "success",
     code: 201,
     data: {
-      result: newContact,
+      result,
     },
   });
 };
